@@ -1,10 +1,8 @@
 # CIS 566 Homework 3: Environment Setpiece
 ## Catherine Yang, PennKey: catyang
 
-## 
+## Link: https://catherine-yang.com/hw03-environment-setpiece/
 
-## Flying Dinosaur
-![](day.png)
 
 ---
 ## References
@@ -12,26 +10,41 @@
 - Jamie Wong- Ray Marching Techniques and Normal Calculations: http://jamie-wong.com/2016/07/15/ray-marching-signed-distance-functions/
 - Ray Marching: CIS 460 and CIS 566 slides
 - Toolbox Functions: Toolbox slides
+- Soft Shadows: https://iquilezles.org/www/articles/rmshadows/rmshadows.htm
+- Noise Functions from ShaderToy projects: https://www.shadertoy.com/view/XdsGD7, https://www.shadertoy.com/view/MsB3WR
+- Lights: https://www.shadertoy.com/view/td2GD3
 
 ---
 ## Techniques
 
-### Dinosaur - Geometry and Color
-The dinosaur is made of the following SDF shapes:
-- Sphere for the head
-- Vertical Capsules for the neck and legs
-- Round Cone (rotated) for the tail
-- Ellipsoid for the body
+- SDFs: Each element in the scene is made of its own SDF. The house is made of SDF primitives blended together (sdBox, sdRoundBox, sdTriPrism).
 
-The shapes were combined through Union and Smooth Blending.
+- Animation: The sky is a combination of a sky color and clouds. The clouds are created using FBM that uses the time in its calculation. The water uses time as an input in the noise function it uses to adjust the geometry;
 
-The color of the dinosaur is applied through lambertian shading, and the color can be adjusted through the GUI. The normal that is part of the lambertian shading calculation is estimated using Jamie Wong's calculation which takes the current point on the surface. 
+- Noise: The water, hills, and grass all use noise to change geometry. The roof and house use noise functions for their colors.
 
-### Sky - Animation and Color
-- The sky is a combination of a sky color and clouds. The clouds are created using FBM that uses the time in its calculation. 
-- In the 'Night' mode, there is animated lightning as well, which is created using the Sawtooth function to sharply toggle the weight of the sky color and the cloud color. In order to change the color of the dinosaur to reflect the lightning, Smooth Step is applied to the Sawtooth function and this value is used to adjust the light intensity.
+- Lighting: There are three light sources in the scene of slightly different shades.
 
-![](night1.png) ![](night2.png)
+- Soft Shadows: https://iquilezles.org/www/articles/rmshadows/rmshadows.htm
 
-### Raymarching
-The raymarching technique discussed in the slides and the resources listed above is used to find the implicit surfaces. A ray is cast using the eye position, reference point position, up vector of the camera, and screen width and height. Then, the direction of this ray is used for raymarching. There is a BVH containing the geometry, with one bounding box for the top of the dinosaur (head and neck) and one for the remaining parts. The BVH is an optimization for raymarching. The rayMarch function returns the depth where the surface is and this is used to calculate the normal at that point on the surface.
+- Other: The clouds are low-lying so they cause the ground to be cloudy.
+
+---
+## Inspiration
+
+I wanted to recreate a Miyazaki-style landscape, specifically using these scenes from Howl's Moving Castle. 
+
+I wanted to add more details to the building, make the grass more realistic, have the lake be reflective, and make better mountains :/
+
+![](building.png)
+
+![](scene.png)
+
+![](scene2.png)
+
+
+---
+![](screenshot.png)
+not quite
+
+
