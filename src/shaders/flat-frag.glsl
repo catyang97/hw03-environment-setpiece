@@ -394,7 +394,7 @@ vec3 castRay() {
   return ray_Dir;
 }
 
-// IQ Refernce: https://iquilezles.org/www/articles/rmshadows/rmshadows.htm
+// IQ Reference: https://iquilezles.org/www/articles/rmshadows/rmshadows.htm
 float softShadow(vec3 ro, vec3 rd, float minT, float maxT, float k) {
     float res = 1.0;
     for(float t = minT; t < maxT;) {
